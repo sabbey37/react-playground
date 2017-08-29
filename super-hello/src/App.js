@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Readout from './Readout.js';
 
 class App extends Component {
   render() {
@@ -8,10 +9,10 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Hello, World!!</h2>
+          <h2>Welcome to Hotlanta</h2>
         </div>
         <p className="App-intro">
-          My name is React.
+          <Readout temperature={10000} unit="f" />
         </p>
       </div>
     );
