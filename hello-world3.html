@@ -13,17 +13,21 @@
   <div id="root"></div>
 
   <script type="text/babel">
-    const component = React.createElement(
-      "div",
-      null,
-      React.createElement(
-        "span",
-        null,
-        "142"
-      )
-    );
+    // const component = React.createElement(
+    //   "div",
+    //   null,
+    //   React.createElement(
+    //     "span",
+    //     null,
+    //     "142"
+    //   )
+    // );
+
+    function component() {
+        return (<div><span>142</span></div>)
+    }
     ReactDOM.render(
-      component,
+      component(),
       document.getElementById('root')
     );
   </script>
