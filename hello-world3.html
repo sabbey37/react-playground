@@ -22,12 +22,46 @@
     //     "142"
     //   )
     // );
+    // Version 2
+    // function component() {
+    //     return (<div><span>142</span></div>)
+    // }
+    //  ReactDOM.render(
+    //   component()
+    //   document.getElementById('root')
+    // );
 
-    function component() {
-        return (<div><span>142</span></div>)
-    }
+    // Version 3
+    //  function Component() {
+    //     return (<div><span>142</span></div>)
+    // }
+    //  ReactDOM.render(
+    //   <Component />,
+    //   document.getElementById('root')
+    // );
+
+    // Version 4
+    // function Readout(props) {
+    //         return (
+    //         <div>
+    //             <span>{props.temperature} {props.unit}</span>
+    //         </div>)
+    //     }
+
+    // ReactDOM.render(
+    //   <Readout temperature="178" unit="F"/>,
+    //   document.getElementById('root')
+    // );
+
+    // Version 5
+    const Readout = (props) => 
+             (
+            <div>
+                <span>{props.temperature} {props.unit}</span>
+            </div>)
+
     ReactDOM.render(
-      component(),
+      <Readout temperature="178" unit="F"/>,
       document.getElementById('root')
     );
   </script>
