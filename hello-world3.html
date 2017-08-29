@@ -80,6 +80,16 @@
     // </div>
     // );
 
+    //  let currentTemp = 50;
+    // // React redraws component every 2 seconds
+    // setInterval(() => {
+    //     ReactDOM.render(
+    //         <Readout temperature={currentTemp} unit="f"/>,
+    //         document.getElementById('root')
+    //     );
+    //     currentTemp = currentTemp + 5;
+    // }, 2000);
+
     // Version 8 -- Can pull out only the arguments you need from props
     const formatUnits = units => units.toUpperCase(); 
     const Readout = ({temperature, unit}) => (
