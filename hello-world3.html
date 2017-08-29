@@ -73,16 +73,36 @@
     //     );
     
     // Version 7 -- custom function calls inside curlies
+    // const formatUnits = units => units.toUpperCase(); 
+    // const Readout = props => (
+    // <div>
+    //     <span>{props.temperature} {formatUnits(props.unit)}</span>
+    // </div>
+    // );
+
+    // Version 8 -- Can pull out only the arguments you need from props
     const formatUnits = units => units.toUpperCase(); 
-    const Readout = props => (
+    const Readout = ({temperature, unit}) => (
     <div>
-        <span>{props.temperature} {formatUnits(props.unit)}</span>
+        <span>{temperature} {formatUnits(unit)}</span>
     </div>
     );
-    ReactDOM.render(
-      <Readout temperature="178" unit="f"/>,
-      document.getElementById('root')
-    );
+
+    // ReactDOM.render(
+    //   <Readout temperature="178" unit="f"/>,
+    //   document.getElementById('root')
+    // );
+
+    let currentTemp = 50;
+    // React redraws component every 2 seconds
+    setInterval(() => {
+        ReactDOM.render(
+            <Readout temperature={currentTemp} unit="f"/>,
+            document.getElementById('root')
+        );
+        currentTemp = currentTemp + 5;
+    }, 2000);
+    
   </script>
 </body>
 </html>
