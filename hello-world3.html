@@ -53,15 +53,34 @@
     //   document.getElementById('root')
     // );
 
-    // Version 5
-    const Readout = (props) => 
-             (
-            <div>
-                <span>{props.temperature} {props.unit}</span>
-            </div>)
+    // Version 5 -- can eliminate curly braces and return and parens around argument (only returning one thing, only one arg)
+    // const Readout = props => (
+    //     <div>
+    //         <span>{props.temperature} {props.unit}</span>
+    //     </div>
+    //     );
 
+    // ReactDOM.render(
+    //   <Readout temperature="178" unit="F"/>,
+    //   document.getElementById('root')
+    // );
+
+    // Version 6 -- can put JavaScript expressions inside curly braces
+    // const Readout = props => (
+    //     <div>
+    //         <span>{props.temperature} {props.unit.toUpperCase()}</span>
+    //     </div>
+    //     );
+    
+    // Version 7 -- custom function calls inside curlies
+    const formatUnits = units => units.toUpperCase(); 
+    const Readout = props => (
+    <div>
+        <span>{props.temperature} {formatUnits(props.unit)}</span>
+    </div>
+    );
     ReactDOM.render(
-      <Readout temperature="178" unit="F"/>,
+      <Readout temperature="178" unit="f"/>,
       document.getElementById('root')
     );
   </script>
