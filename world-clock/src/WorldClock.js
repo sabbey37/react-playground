@@ -42,10 +42,14 @@ class WorldClock extends React.Component {
         <div>
             <h2>{this.props.place}</h2>
             <p>{this.state.currentTime.toLocaleTimeString('en-US', this.state.options)}</p>
-            <a href="" onClick={(event) => {
+            <a className="options" href="" onClick={(event) => {
                 event.preventDefault();
                 this.props.deleteHandler(this.props.place);
                 }}>Delete</a>
+            <a className="options" href="" onClick={(event) => {
+                event.preventDefault();
+                console.log("hi");
+                }}>Customize</a>
         </div>
       );
   }
