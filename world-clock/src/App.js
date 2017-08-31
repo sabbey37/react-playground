@@ -7,7 +7,7 @@ import SearchOutput from './ZeOutput.js';
 import utils from './utils.js';
 
 var ZONES = {
-     'Choose a city': undefined,
+     'Select a city': undefined,
      'New York City, NY, USA': 'America/New_York', 
      'New Orleans, LA, USA': 'America/Chicago',
      'Seattle, WA, USA': 'America/Los_Angeles',
