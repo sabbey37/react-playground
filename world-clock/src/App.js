@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import WorldClockDisplay from './WorldClockDisplay.js';
 import CityOptions from './options.js';
+import SearchInput from './search.js';
+import SearchOutput from './ZeOutput.js';
 
 var ZONES = {
      'New York City, NY, USA': 'America/New_York', 
@@ -50,8 +52,8 @@ class App extends Component {
     return (
       <div className="App">
           <h1>{this.state.label}</h1>
-          <input onChange={this._updateText} type="text" value={this.state.text} />
-          <p>{this.state.text}</p>
+          <SearchInput text={this.state.text} changeHandler={this._updateText} />
+          <SearchOutput text={this.state.text}/>
           {/*<h1>World Clocks</h1>
           <p>Please select a city to add a clock to the page</p>
           <CityOptions cities={ZONES}
