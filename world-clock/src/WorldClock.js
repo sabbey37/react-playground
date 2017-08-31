@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class WorldClock extends React.Component {
   constructor(props) {
     super(props);
@@ -11,21 +10,12 @@ class WorldClock extends React.Component {
       digital: false,
       color: 'yellow'
     };
-    // this._setTime();
+  }
+  componentDidMount() {
     setInterval(() => {
         this._updateTime(1000)
     }, 1000)
   }
-
-  _setTime = () => {
-      console.log('hiiii');
-      var options = {timeZone: this.props.timeZone, timeZoneName: 'short'};
-      var newZone = this.state.currentTime.toLocaleTimeString('en-US', options);
-      this.setState({
-          currentTime: newZone
-      });
-  }
-
   _updateTime = (timeDifference) => {
     const newTime = new Date(this.state.currentTime.getTime() + timeDifference);
     this.setState({
@@ -44,7 +34,7 @@ class WorldClock extends React.Component {
   render() {
       return (
         <div>
-            <p>Place: {this.props.place}</p>
+            <h2>{this.props.place}</h2>
             <p>{this.state.currentTime.toLocaleTimeString('en-US', this.state.options)}</p>
         </div>
       );
@@ -52,22 +42,4 @@ class WorldClock extends React.Component {
 
 }
 
-class WorldClockDisplay extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        var clocks = [];
-        this.props.times.forEach((time) => {
-            clocks.push(<WorldClock place={time.place} timeZone={time.timeZone} key={time.place} />);
-        });
-        return (
-            <div>
-                <h2>World Clocks</h2>
-                {clocks}
-            </div>
-        );
-    }
-}
-
-export default WorldClockDisplay;
+export default WorldClock;
