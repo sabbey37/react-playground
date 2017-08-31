@@ -13,7 +13,9 @@ var ZONES = {
      'Reykjavik, Iceland': 'Atlantic/Reykjavik',
      'Sydney, Australia': 'Australia/Sydney',
      'Tehran, Iran': 'Asia/Tehran',
-     'Tokyo, Japan': 'Asia/Tokyo'
+     'Tokyo, Japan': 'Asia/Tokyo',
+     'Cape Verde': 'Atlantic/Cape_Verde',
+     'Lagos, Nigeria': 'Africa/Lagos'
 }
 
 var CITIES = {}
@@ -38,14 +40,8 @@ class App extends Component {
      _deleteClock = (city) => {
         ZONES[city] = CITIES[city];
         delete CITIES[city];
-        let newCities = {};
-        for (let c in this.state.cities) {
-            if (c !== city) {
-                newCities[c] = this.state.cities[c]
-            }
-        }
         this.setState({
-            cities: newCities
+            cities: CITIES
         })
     }
   render() {
