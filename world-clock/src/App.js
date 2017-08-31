@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import WorldClockDisplay from './WorldClockDisplay.js';
 import CityOptions from './options.js';
-import SearchInput from './search.js';
-import SearchOutput from './ZeOutput.js';
-import utils from './utils.js';
+// import SearchInput from './search.js';
+// import SearchOutput from './ZeOutput.js';
+// import utils from './utils.js';
 
 var ZONES = {
      'Select a city': undefined,

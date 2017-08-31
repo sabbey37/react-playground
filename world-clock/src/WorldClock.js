@@ -28,14 +28,14 @@ class WorldClock extends React.Component {
     });
   }
 
-//   _updateLookAndFeel = (isDigital, newColor) => {
-//     // isDigital = true;
-//     // newColor = 'cornflowerblue';
-//     this.setState({
-//       digital: isDigital,
-//       color: newColor
-//     });
-//   }
+  _updateLookAndFeel = (isDigital, newColor) => {
+    // isDigital = true;
+    // newColor = 'cornflowerblue';
+    this.setState({
+      digital: isDigital,
+      color: newColor
+    });
+  }
 
   render() {
       return (
@@ -46,10 +46,10 @@ class WorldClock extends React.Component {
                 event.preventDefault();
                 this.props.deleteHandler(this.props.place);
                 }}>Delete</a>
-            <a className="options" href="" onClick={(event) => {
+            {/*<a className="options" href="" onClick={(event) => {
                 event.preventDefault();
                 console.log("hi");
-                }}>Customize</a>
+                }}>Customize</a>*/}
         </div>
       );
   }
