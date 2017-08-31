@@ -24,7 +24,9 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cities: {}
+            cities: {},
+            label: 'Maybz?',
+            text: 'YUSSSS'
         };
         this.handleCitySelect = this.handleCitySelect.bind(this);
     }
@@ -47,15 +49,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <h1>World Clocks</h1>
+          <h1>{this.state.label}</h1>
+          <input onChange={this._updateText} type="text" value={this.state.text} />
+          <p>{this.state.text}</p>
+          {/*<h1>World Clocks</h1>
           <p>Please select a city to add a clock to the page</p>
           <CityOptions cities={ZONES}
              onCitySelect={this.handleCitySelect}
           />
           <WorldClockDisplay times={this.state.cities} 
-            deleteHandler={this._deleteClock}/>
+            deleteHandler={this._deleteClock}/>*/}
       </div>
     );
+  }
+  _updateText = (event) => {
+      this.setState({
+          text: event.target.value
+      })
   }
 }
 
