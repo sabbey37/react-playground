@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const CreateOption = ({place}, {id}) =>  (
+const CreateOption = ({place}) =>  (
         <option value={place}>{place}</option>
     )
 
@@ -14,13 +14,12 @@ class CityOptions extends React.Component {
     }
 
     render() {
-        var options = [];
-        this.props.cities.forEach((city) => {
-            options.push(<CreateOption
-            place={city.place}
-            key={city.place}
-            />);
-        });
+        var options = Object.keys(this.props.cities).map((city, idx) => (
+        <CreateOption
+            place={city}
+            key={idx}
+            />
+        ));
         return ( 
             <form>
                 <select onChange={this.handleValueChange}>

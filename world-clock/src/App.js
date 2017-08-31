@@ -3,19 +3,6 @@ import './App.css';
 import WorldClockDisplay from './WorldClockDisplay.js';
 import CityOptions from './options.js';
 
-var TIMES = [
-    {place: 'New York City, NY, USA'},
-    {place: 'New Orleans, LA, USA'},
-    {place: 'Seattle, WA, USA'},
-    {place: 'Maputo, Mozambique'},
-    {place: 'La Paz, Bolivia'},
-    {place: 'Oslo, Norway'},
-    {place: 'Reykjavik, Iceland'},
-    {place: 'Sydney, Australia'},
-    {place: 'Tehran, Iran'},
-    {place: 'Tokyo, Japan'}
-]
-
 var ZONES = {
      'New York City, NY, USA': 'America/New_York', 
      'New Orleans, LA, USA': 'America/Chicago',
@@ -40,22 +27,37 @@ class App extends Component {
         this.handleCitySelect = this.handleCitySelect.bind(this);
     }
     handleCitySelect(city) {
-        const newCity = {timeZone: ZONES[city]};
+        const newCity = ZONES[city];
         CITIES[city] = newCity;
+        delete ZONES[city];
         this.setState({
             cities: CITIES
         })
 
+    }
+     _deleteClock = (city) => {
+        ZONES[city] = CITIES[city];
+        delete CITIES[city];
+        let newCities = {};
+        for (let c in this.state.cities) {
+            if (c !== city) {
+                newCities[c] = this.state.cities[c]
+            }
+        }
+        this.setState({
+            cities: newCities
+        })
     }
   render() {
     return (
       <div className="App">
           <h1>World Clocks</h1>
           <p>Please select a city to add a clock to the page</p>
-          <CityOptions cities={TIMES}
+          <CityOptions cities={ZONES}
              onCitySelect={this.handleCitySelect}
           />
-          <WorldClockDisplay times={this.state.cities} />
+          <WorldClockDisplay times={this.state.cities} 
+            deleteHandler={this._deleteClock}/>
       </div>
     );
   }

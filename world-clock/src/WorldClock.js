@@ -12,10 +12,15 @@ class WorldClock extends React.Component {
     };
   }
   componentDidMount() {
-    setInterval(() => {
+    this.timer = setInterval(() => {
         this._updateTime(1000)
     }, 1000)
   }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
   _updateTime = (timeDifference) => {
     const newTime = new Date(this.state.currentTime.getTime() + timeDifference);
     this.setState({
@@ -23,19 +28,21 @@ class WorldClock extends React.Component {
     });
   }
 
-  _updateLookAndFeel = (isDigital, newColor) => {
-    // isDigital = true;
-    // newColor = 'cornflowerblue';
-    this.setState({
-      digital: isDigital,
-      color: newColor
-    });
-  }
+//   _updateLookAndFeel = (isDigital, newColor) => {
+//     // isDigital = true;
+//     // newColor = 'cornflowerblue';
+//     this.setState({
+//       digital: isDigital,
+//       color: newColor
+//     });
+//   }
+
   render() {
       return (
         <div>
             <h2>{this.props.place}</h2>
             <p>{this.state.currentTime.toLocaleTimeString('en-US', this.state.options)}</p>
+            <button onClick={() => {this.props.deleteHandler(this.props.place)}}>Delete</button>
         </div>
       );
   }

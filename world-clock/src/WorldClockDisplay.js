@@ -8,8 +8,13 @@ class WorldClockDisplay extends React.Component {
     render() {
 
         if (this.props.times.length !== 0 || this.props.times !== undefined) { 
-            var clocks = Object.keys(this.props.times).map((key, i) => (
-                <WorldClock place={key} timeZone={this.props.times[key].timeZone} key={i} />
+            var clocks = Object.keys(this.props.times).map((city, i) => (
+                <WorldClock 
+                    place={city} 
+                    timeZone={this.props.times[city]} 
+                    key={i}
+                    deleteHandler={this.props.deleteHandler} 
+                />
             ));
         }
         return (
@@ -17,7 +22,7 @@ class WorldClockDisplay extends React.Component {
                 {clocks}
             </div>
         );
-}
+    }
 }
 
 export default WorldClockDisplay;
