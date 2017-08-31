@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 
-const CreateOption = ({place}) =>  (
-        <option value={place}>{place}</option>
-    )
+const CreateOption = ({place}) =>  {
+    var condition = (place === "Select a city");
+    return condition ? <option value={place}>{place}</option> : <option value={place}>{place}</option>
+}
 
 class CityOptions extends React.Component {
     constructor(props) {
         super(props);
-        this.handleValueChange=this.handleValueChange.bind(this);
-    }
-    handleValueChange(e) {
-        this.props.onCitySelect(e.target.value);
+        this.state = {
+            value: 'Select a city'
+        }
     }
 
     render() {
@@ -22,7 +22,7 @@ class CityOptions extends React.Component {
         ));
         return ( 
             <form>
-                <select onChange={this.handleValueChange}>
+                <select value={this.state.value} onChange={this.props.onCitySelect}>
                     {options}
                 </select>
             </form>

@@ -7,6 +7,7 @@ import SearchOutput from './ZeOutput.js';
 import utils from './utils.js';
 
 var ZONES = {
+     'Choose a city': undefined,
      'New York City, NY, USA': 'America/New_York', 
      'New Orleans, LA, USA': 'America/Chicago',
      'Seattle, WA, USA': 'America/Los_Angeles',
@@ -31,9 +32,9 @@ class App extends Component {
             label: 'Maybz?',
             text: 'YUSSSS'
         };
-        this.handleCitySelect = this.handleCitySelect.bind(this);
     }
-    handleCitySelect(city) {
+    _handleCitySelect = (e) => {
+        var city = e.target.value;
         const newCity = ZONES[city];
         CITIES[city] = newCity;
         delete ZONES[city];
@@ -52,15 +53,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          {/*<h1>{this.state.label}</h1>
-          <SearchInput text={this.state.text} changeHandler={this._updateText} />
-          <SearchOutput 
-          transformText={utils.transformText}
-          text={this.state.text}/>*/}
           <h1>World Clocks</h1>
           <p>Please select a city to add a clock to the page</p>
           <CityOptions cities={ZONES}
-             onCitySelect={this.handleCitySelect}
+             onCitySelect={this._handleCitySelect}
           />
           <WorldClockDisplay times={this.state.cities} 
             deleteHandler={this._deleteClock}/>
@@ -75,3 +71,11 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+{/*<h1>{this.state.label}</h1>
+          <SearchInput text={this.state.text} changeHandler={this._updateText} />
+          <SearchOutput 
+          transformText={utils.transformText}
+          text={this.state.text}/>*/}
