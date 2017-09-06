@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {BrowserRouter, Route, Switch, Link} from 'react-router-dom';
+
 import logo from './logo.svg';
 import './App.css';
 import Jank from './Jank.js';
@@ -41,21 +43,25 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <ul>
-            <li><a href="#" onClick={(e) => {
-                e.preventDefault();
-                this._changeNav(0);
-                }}>Jank</a></li>
-            <li><a href="#" onClick={(e) => {
-                e.preventDefault();
-                this._changeNav(1);
-                }}>Thing</a></li>
-            <li><a href="#" onClick={(e) => {
-                e.preventDefault();
-                this._changeNav(2);
-                }}>Bob</a></li>
-        </ul>
-        {componentToRender}
+        <BrowserRouter>
+            <div>
+                <ul>
+                    <li><Link to="/">Jank</Link></li>
+                    <li><Link to="/bob">Bob</Link></li>
+                    <li><Link to="/thing">Thing</Link></li>
+                </ul>
+                <Switch>
+                    <Route exact path = "/" component={Jank} />
+                    <Route path = "/bob" component={Bob} />
+                    <Route path = "/thing" component={Thing} />
+            {/*Switch allows user to add default route (will redirect user there if page not found)*/}
+                    <Route render={() => (
+                        <p>Page not found: No Soup for you!</p>
+                        )} />
+                </Switch>
+            </div>
+        </BrowserRouter>
+        {/*{componentToRender}*/}
       </div>
     );
   }
