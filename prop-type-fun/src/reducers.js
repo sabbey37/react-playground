@@ -1,4 +1,5 @@
 import actions from './actions';
+import {combineReducers} from 'redux';
 
 export const LOCATIONS = {
     TRANSPORTER_ROOM: 'TRANSPORTER_ROOM',
@@ -7,19 +8,51 @@ export const LOCATIONS = {
     SUN: 'SUN'
 }
 
+const ships = (state=[], action) => {
+    switch (action.type) {
+        case actions.ADD_SHIP:
+            return [
+                ...state,
+                {
+                    id: action.id,
+                    name: action.name
+                }
+            ]
+
+        default:
+            return state;
+    }
+}
+
 const crewMembers = (state = [], action) => {
     switch(action.type) {
         case actions.ADD_MEMBER:
-            return state.concat({
-                name: action.name,
-                rank: action.rank,
-                id: action.id,
-                location: action.location
-            })
+            // Equivalent to state.concat version, using spread operator
+            return [
+                ...state,
+                {
+                    name: action.name,
+                    rank: action.rank,
+                    id: action.id,
+                    location: action.location
+                }
+            ]
+            // return state.concat({
+            //     name: action.name,
+            //     rank: action.rank,
+            //     id: action.id,
+            //     location: action.location
+            // })
         case actions.BEAM_MEMBER:
             return state.map((crewMember) => {
                 if(action.id === crewMember.id && action.location in LOCATIONS) {
-                    return Object.assign({}, crewMember, {location: action.location});
+                    let newLocation = action.location;
+                    return {
+                        ...crewMember,
+                        location: newLocation
+                    }
+                    // Longer version of Object cloning
+                    // return Object.assign({}, crewMember, {location: action.location});
                 } else {
                     return crewMember;
                 }
@@ -30,4 +63,7 @@ const crewMembers = (state = [], action) => {
     }
 }
 
-export default crewMembers;
+export default combineReducers({
+    crewMembers,
+    ships
+});
