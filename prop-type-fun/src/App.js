@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className="App">
         <img src={logo} className="App-logo" alt="logo" />
-        <Spaceship name="Supernova">
+        <Spaceship name="Supernova" commanderType="BadAlien">
             <CrewMember name="Spock" rank="highest" />
             <CrewMember name="Ryker" rank="Commander" />
             <BadAlien name="Bjork" species="Borg" />
