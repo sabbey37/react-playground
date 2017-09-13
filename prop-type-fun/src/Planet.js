@@ -8,6 +8,10 @@ class Planet extends Component {
         children: PropTypes.node
     }
 
+    static defaultProps = {
+        classification: "Unknown"
+    };
+
     render() {
         const {name, classification, children} = this.props;
         return (
