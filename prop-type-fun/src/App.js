@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Spaceship from './Spaceship';
 import CrewMember from './CrewMember';
+import BadAlien from './BadAlien';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
         <Spaceship name="Supernova">
             <CrewMember name="Spock" rank="highest" />
             <CrewMember name="Ryker" rank="Commander" />
+            <BadAlien name="Bjork" species="Borg" />
         </Spaceship>
       </div>
     );
