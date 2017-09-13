@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 
 class Spaceship extends Component {
     static propTypes = {
-        name: PropTypes.string
+        name: PropTypes.string,
+        children: PropTypes.node.isRequired
     };
+
     render(){
-        const {name} = this.props;
+        const {name, children} = this.props;
         return (
             <div>
                 <h1>{name}</h1>
+                {children}
             </div>
         );
     }
