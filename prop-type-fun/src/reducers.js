@@ -1,61 +1,67 @@
-import actions from './actions';
+import * as actions from './actions';
 import {combineReducers} from 'redux';
 
-export const LOCATIONS = {
-    TRANSPORTER_ROOM: 'TRANSPORTER_ROOM',
-    LOCATION_SHIP: 'LOCATION_SHIP',
-    PLANET_EARTH: 'PLANET_EARTH',
-    SUN: 'SUN'
-}
 
+// const ships = (state=[], action) => {
+//     switch (action.type) {
+//         case actions.ADD_SHIP:
+//             return [
+//                 ...state,
+//                 {
+//                     id: action.id,
+//                     name: action.name,
+//                     crystals: 0,
+//                     max_load: action.max_load
+//                 }
+//             ]
+//         case actions.REMOVE_CRYSTALS:
+//             return state.map( (ship) => (
+//                 (action.id === ship.id)
+//                 ? { ...ship, crystals:  ship.crystals - action.howMany }
+//                 : ship
+//             ));
+//         case actions.ADD_CRYSTALS:
+//             return state.map( (ship) => (
+//                 (action.id === ship.id)
+//                 ? { ...ship, crystals:  ship.crystals + action.howMany }
+//                 : ship
+//             ));
+//         default:
+//             return state;
+//     }
+// }
 
-const ships = (state=[], action) => {
-    switch (action.type) {
-        case actions.ADD_SHIP:
-            return [
-                ...state,
-                {
-                    id: action.id,
-                    name: action.name,
-                    crystals: 0,
-                    max_load: action.max_load
-                }
-            ]
-        case actions.REMOVE_CRYSTALS:
-            return state.map( (ship) => (
-                (action.id === ship.id)
-                ? { ...ship, crystals:  ship.crystals - action.howMany }
-                : ship
-            ));
-        case actions.ADD_CRYSTALS:
-            return state.map( (ship) => (
-                (action.id === ship.id)
-                ? { ...ship, crystals:  ship.crystals + action.howMany }
-                : ship
-            ));
-        default:
-            return state;
-    }
-}
-
-const planets = (state = [], action) => {
+const locations = (state = {'planets': {}, 'ships': {}}, action) => {
     switch(action.type) {
-        case actions.ADD_PLANET:
-            return [
-                ...state,
-                {
-                    name: action.name,
-                    id: action.id,
+        case actions.ADD_LOCATION:
+            let newState = {...state};
+            if (action.locationType === "planet") {
+                newState["planets"][String(action.id)] = {
+                id: action.id,
+                name: action.name,
+                resources: {
                     crystals: action.crystals
                 }
-            ]
-        case actions.REMOVE_CRYSTALS:
+            };
+
+            } else {
+                newState["ships"][String(action.id)] = {
+                id: action.id,
+                name: action.name,
+                resources: {
+                    crystals: action.crystals
+                }
+            };
+            }
+
+            return newState;
+        case actions.REMOVE_RESOURCE:
             return state.map( (planet) => (
                 (action.id === planet.id)
                 ? { ...planet, crystals:  planet.crystals - action.howMany }
                 : planet
             ));
-        case actions.ADD_CRYSTALS:
+        case actions.ADD_RESOURCE:
             return state.map( (planet) => (
                 (action.id === planet.id)
                 ? { ...planet, crystals:  planet.crystals + action.howMany }
@@ -108,6 +114,5 @@ const crewMembers = (state = [], action) => {
 
 export default combineReducers({
     crewMembers,
-    ships,
-    planets
+    locations
 });

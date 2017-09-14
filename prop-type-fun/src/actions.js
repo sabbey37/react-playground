@@ -1,39 +1,68 @@
 // Tip: make constants for action type strings
 
-const ADD_MEMBER = 'ADD_MEMBER';
-const BEAM_MEMBER = 'BEAM_MEMBER';
-const ADD_SHIP = 'ADD_SHIP';
-const ADD_PLANET = 'ADD_PLANET';
-const ADD_CRYSTALS = 'ADD_CRYSTALS';
-const REMOVE_CRYSTALS = 'REMOVE_CRYSTALS';
-const HOLD_LUAU = 'HOLD_LUAU';
+export const ADD_MEMBER = 'ADD_MEMBER';
+export const BEAM_MEMBER = 'BEAM_MEMBER';
+export const ADD_LOCATION = 'ADD_LOCATION';
+export const ADD_RESOURCE = 'ADD_RESOURCE';
+export const REMOVE_RESOURCE = 'REMOVE_RESOURCE';
 
-// {   type: ADD_MEMBER,
-//     name: name,
-//     rank: rank,
-//     id: id,
-//     location: location,
-//     capacity: num
+// let objStr = {
+//     locations: {
+//     planets: {
+//         '52': {
+//             id: 52,
+//             name: 'Pluto',
+//             resources: {
+//                 crystals: 1000
+//             }
+//         },
+//         '54': {
+//             id: 54,
+//             name: 'Earth',  
+//             resources: {
+//                 crystals: 2000
+//             }
+//         }
+//     },
+//     ships: {
+//         '1000': {
+//             id: 1000,
+//             name: 'Grace',
+//             resources: {
+//                 crystals: 0
+//             }
+//         }
+//     }
+//     }, 
+//     crewMembers: {
+//         '300': {
+//             id: 200,
+//             name: 'Peppermint Tea',
+//             rank: 'Healing',
+//             location: ['planets', id]
+//         }
+//     }
 // }
 
-// {   type: BEAM_MEMBER,
-//     id: id,
-//     location: location
-// }
+export const addMember = (name, rank, id, locationType, locationId) => {
+    return {type: ADD_MEMBER, name, rank, id, location: [locationType, locationId]};
+}
 
-// {
-//     type: ADD_SHIP,
-//     name: name,
-//     id: id,
-//     max_load: num
-// }
+export const beamMember = (id, location) => {
+    return {type: BEAM_MEMBER, id, location};
+}
 
-// {
-//     type: ADD_PLANET,
-//     name: name,
-//     id: id,
-//     mines: number
-// }
+export const addLocation = (id, name, locationType, crystals) => {
+    return {type: ADD_LOCATION, locationType, name, id, crystals};
+}
+
+export const removeResource = (resource, id, howMany) => {
+    return {type: REMOVE_RESOURCE, resource, id, howMany};
+}
+
+export const addResource = (resource, id, howMany) => {
+    return {type: ADD_RESOURCE, resource, id, howMany};
+}
 
 // {
 //     type: MINE_CRYSTALS,
@@ -41,21 +70,23 @@ const HOLD_LUAU = 'HOLD_LUAU';
 //     memid: id,
 //     
 // }
-
 // {
-//     type: TRANSFER_CRYSTALS,
-//     planetid: ___,
-//     shipid: id,
-//     howMany: num   
+//     type: ADD_SHIP,
+//     name: name,
+//     id: id,
+//     max_load: num
 // }
 
 
-export default {
-    ADD_MEMBER,
-    BEAM_MEMBER,
-    ADD_SHIP, 
-    ADD_PLANET,
-    ADD_CRYSTALS,
-    REMOVE_CRYSTALS,
-    HOLD_LUAU
-}
+// export default {
+//     ADD_MEMBER,
+//     BEAM_MEMBER,
+//     ADD_LOCATION,
+//     ADD_RESOURCE,
+//     REMOVE_RESOURCE,
+//     addLocation,
+//     removeResource,
+//     addResource,
+//     beamMember,
+//     addMember
+// }
