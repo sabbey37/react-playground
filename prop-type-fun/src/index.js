@@ -11,6 +11,8 @@ import {createStore} from 'redux';
 const store = createStore(starTrekApp);
 
 window.store = store;
+window.MINE_CRYSTALS = actions.MINE_CRYSTALS;
+window.ADD_PLANET = actions.ADD_PLANET;
 window.ADD_SHIP = actions.ADD_SHIP;
 window.ADD_MEMBER = actions.ADD_MEMBER;
 window.BEAM_MEMBER = actions.BEAM_MEMBER;

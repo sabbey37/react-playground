@@ -20,7 +20,6 @@ const ships = (state=[], action) => {
                     max_load: action.max_load
                 }
             ]
-
         default:
             return state;
     }
@@ -33,13 +32,13 @@ const planets = (state = [], action) => {
                 ...state,
                 {
                     name: action.name,
-                    rank: action.rank,
                     id: action.id,
                     mines: action.mines,
                     crystalsInEachMine: action.crystalsInEachMine
                 }
             ]
-
+        case actions.MINE_CRYSTALS:
+            
         default:
             return state;
     }
@@ -87,5 +86,6 @@ const crewMembers = (state = [], action) => {
 
 export default combineReducers({
     crewMembers,
-    ships
+    ships,
+    planets
 });
