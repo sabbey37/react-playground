@@ -4,7 +4,7 @@ const ADD_MEMBER = 'ADD_MEMBER';
 const BEAM_MEMBER = 'BEAM_MEMBER';
 const ADD_SHIP = 'ADD_SHIP';
 const ADD_PLANET = 'ADD_PLANET';
-const MINE_CRYSTALS = 'MINE_CRYSTALS';
+const TRANSFER_CRYSTALS = 'TRANSFER_CRYSTALS';
 const HOLD_LUAU = 'HOLD_LUAU';
 
 // {   type: ADD_MEMBER,
@@ -34,12 +34,26 @@ const HOLD_LUAU = 'HOLD_LUAU';
 //     mines: number
 // }
 
+// {
+//     type: MINE_CRYSTALS,
+//     planetid: ___,
+//     memid: id,
+//     
+// }
+
+// {
+//     type: TRANSFER_CRYSTALS,
+//     planetid: ___,
+//     shipid: id,
+//     howMany: num   
+// }
+
 
 export default {
     ADD_MEMBER,
     BEAM_MEMBER,
     ADD_SHIP, 
     ADD_PLANET,
-    MINE_CRYSTALS,
+    TRANSFER_CRYSTALS,
     HOLD_LUAU
 }
