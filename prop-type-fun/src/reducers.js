@@ -1,5 +1,6 @@
 import * as actions from './actions';
 import {combineReducers} from 'redux';
+import _ from 'lodash';
 
 
 // const ships = (state=[], action) => {
@@ -60,23 +61,17 @@ const locations = (state = {'planets': {}, 'ships': {}}, action) => {
         case actions.ADD_RESOURCE:
             newState = {...state};
             let changeLocation;
-           for (let place in location) {
-                    if (place.id === action.id) {
-                        changeLocation = place;
-                    }
-                }
+            let arrLocations = _.flatten(Object.keys(newState).map( loc => {
+                return [].concat(_.values(newState[loc]))
+            }))
+            changeLocation = arrLocations.filter(loc => loc.id === action.id);
+
+            changeLocation.resources = {
+                ...changeLocation.resources,
+                [action.resource]: changeLocation.resource[action.resource] + howMany
             }
-            if (changeLocation) {
-                changeLocation.resources = {
-                    ...changeLocation.resources,
-                    [action.resource]: changeLocation.resources[action.resource] + action.howMany
-                }
-            }
-            return state.map( (planet) => (
-                (action.id === planet.id)
-                ? { ...planet, crystals:  planet.crystals + action.howMany }
-                : planet
-            ));
+            
+            return newState;
         default:
             return state;
     }
