@@ -11,7 +11,6 @@ import {createStore} from 'redux';
 const store = createStore(starTrekApp);
 
 window.store = store;
-window.TRANSFER_CRYSTALS = actions.TRANSFER_CRYSTALS;
 window.ADD_PLANET = actions.ADD_PLANET;
 window.ADD_SHIP = actions.ADD_SHIP;
 window.ADD_MEMBER = actions.ADD_MEMBER;
@@ -19,6 +18,7 @@ window.BEAM_MEMBER = actions.BEAM_MEMBER;
 window.LOCATION_SHIP = LOCATIONS.LOCATION_SHIP;
 window.PLANET_EARTH = LOCATIONS.PLANET_EARTH;
 window.SUN = LOCATIONS.SUN;
+
 
 store.dispatch({type: window.ADD_PLANET, id: 210, name: "Neptune", crystals: 50})
 store.dispatch({type: window.ADD_PLANET, id: 211, name: "SUN", crystals: 100})
@@ -36,6 +36,31 @@ store.dispatch({type: window.ADD_MEMBER, name: 'chamomile tea', rank:'soothing',
 store.dispatch({type: window.ADD_MEMBER, name: 'chai tea', rank:'spicy', id: 127, location: window.PLANET_EARTH, capacity: 75})
 
 // store.dispatch({type: TRANSFER_CRYSTALS, planetId: 210, shipId: 373, howMany: 2})
+
+const transferCrystals = (store, howMany, fromId, toId) => {
+    // getState, see if there are enough crystals
+    // then dispatch two actions
+    const allPlanets = store.getState().planets;
+    const thePlanet = allPlanets.filter(planet => fromId === planet.id)[0];
+
+    if(thePlanet.crystals >= howMany) {
+        store.dispatch({
+            type: actions.REMOVE_CRYSTALS,
+            howMany: howMany,
+            id: fromId
+        });
+        store.dispatch({
+            type: actions.ADD_CRYSTALS,
+            howMany: howMany,
+            id: toId 
+        })
+    } else {
+
+    }
+    
+}
+
+window.transferCrystals = transferCrystals;
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();

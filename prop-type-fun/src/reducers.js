@@ -8,6 +8,7 @@ export const LOCATIONS = {
     SUN: 'SUN'
 }
 
+
 const ships = (state=[], action) => {
     switch (action.type) {
         case actions.ADD_SHIP:
@@ -20,9 +21,17 @@ const ships = (state=[], action) => {
                     max_load: action.max_load
                 }
             ]
-        case actions.TRANSFER_CRYSTALS:
-            return state.map((ship) => (
-                (action.shipId === ship.id) ? {...ship, crystals: ship.crystals + action.howMany} : ship
+        case actions.REMOVE_CRYSTALS:
+            return state.map( (ship) => (
+                (action.id === ship.id)
+                ? { ...ship, crystals:  ship.crystals - action.howMany }
+                : ship
+            ));
+        case actions.ADD_CRYSTALS:
+            return state.map( (ship) => (
+                (action.id === ship.id)
+                ? { ...ship, crystals:  ship.crystals + action.howMany }
+                : ship
             ));
         default:
             return state;
@@ -40,9 +49,17 @@ const planets = (state = [], action) => {
                     crystals: action.crystals
                 }
             ]
-        case actions.TRANSFER_CRYSTALS:
-            return state.map((planet) => (
-                (action.planetId === planet.id) ? {...planet, crystals: planet.crystals - action.howMany} : planet
+        case actions.REMOVE_CRYSTALS:
+            return state.map( (planet) => (
+                (action.id === planet.id)
+                ? { ...planet, crystals:  planet.crystals - action.howMany }
+                : planet
+            ));
+        case actions.ADD_CRYSTALS:
+            return state.map( (planet) => (
+                (action.id === planet.id)
+                ? { ...planet, crystals:  planet.crystals + action.howMany }
+                : planet
             ));
         default:
             return state;
