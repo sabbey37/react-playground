@@ -5,7 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 import * as actions from './actions';
-import starTrekApp, {LOCATIONS} from './reducers';
+import starTrekApp from './reducers';
 import {createStore} from 'redux';
 
 const store = createStore(starTrekApp);
@@ -16,6 +16,7 @@ window.ADD_LOCATION = actions.ADD_LOCATION;
 window.ADD_MEMBER = actions.ADD_MEMBER;
 window.BEAM_MEMBER = actions.BEAM_MEMBER;
 window.addLocation = actions.addLocation;
+window.addResource = actions.addResource;
 
 
 // store.dispatch({type: window.ADD_PLANET, id: 210, name: "Neptune", crystals: 50})

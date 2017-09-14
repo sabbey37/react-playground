@@ -39,18 +39,14 @@ const locations = (state = {'planets': {}, 'ships': {}}, action) => {
                 newState["planets"][String(action.id)] = {
                 id: action.id,
                 name: action.name,
-                resources: {
-                    crystals: action.crystals
-                }
+                resources: action.resources
             };
 
             } else {
                 newState["ships"][String(action.id)] = {
                 id: action.id,
                 name: action.name,
-                resources: {
-                    crystals: action.crystals
-                }
+                resources: action.resources
             };
             }
 
@@ -62,6 +58,20 @@ const locations = (state = {'planets': {}, 'ships': {}}, action) => {
                 : planet
             ));
         case actions.ADD_RESOURCE:
+            newState = {...state};
+            let changeLocation;
+           for (let place in location) {
+                    if (place.id === action.id) {
+                        changeLocation = place;
+                    }
+                }
+            }
+            if (changeLocation) {
+                changeLocation.resources = {
+                    ...changeLocation.resources,
+                    [action.resource]: changeLocation.resources[action.resource] + action.howMany
+                }
+            }
             return state.map( (planet) => (
                 (action.id === planet.id)
                 ? { ...planet, crystals:  planet.crystals + action.howMany }
@@ -94,7 +104,7 @@ const crewMembers = (state = [], action) => {
             // })
         case actions.BEAM_MEMBER:
             return state.map((crewMember) => {
-                if(action.id === crewMember.id && action.location in LOCATIONS) {
+                if(action.id === crewMember.id) {
                     let newLocation = action.location;
                     return {
                         ...crewMember,

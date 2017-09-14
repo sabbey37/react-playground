@@ -52,8 +52,8 @@ export const beamMember = (id, location) => {
     return {type: BEAM_MEMBER, id, location};
 }
 
-export const addLocation = (id, name, locationType, crystals) => {
-    return {type: ADD_LOCATION, locationType, name, id, crystals};
+export const addLocation = (id, name, locationType, resources) => {
+    return {type: ADD_LOCATION, locationType, name, id, resources};
 }
 
 export const removeResource = (resource, id, howMany) => {
