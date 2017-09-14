@@ -60,15 +60,13 @@ const locations = (state = {'planets': {}, 'ships': {}}, action) => {
             ));
         case actions.ADD_RESOURCE:
             newState = {...state};
-            let changeLocation;
             let arrLocations = _.flatten(Object.keys(newState).map( loc => {
                 return [].concat(_.values(newState[loc]))
             }))
-            changeLocation = arrLocations.filter(loc => loc.id === action.id);
-
+            let changeLocation = arrLocations.filter(loc => loc.id === action.id)[0];
             changeLocation.resources = {
                 ...changeLocation.resources,
-                [action.resource]: changeLocation.resource[action.resource] + howMany
+                [action.resource]: changeLocation.resources[action.resource] + action.howMany
             }
             
             return newState;

@@ -1,34 +1,22 @@
-import React, {Component} from 'react';
-import Location from './Location';
+import React from 'react';
+import LocationList from './Location';
 import {connect} from 'react-redux';
 import {addResource} from './actions';
 
-const LocationList = ({locations}) => (
-    <div>
-        {Object.keys(locations).map(key => (
-            <Location
-              name={locations[key].name}
-              resources={locations[key].resources}
-            />
-        ))}
-    </div>
-)
 
 const mapStateToProps = state => ({
     locations: state.locations
 });
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onAddResourcesClick: (resource, id, howMany) => {
+const mapDispatchToProps = dispatch => ({
+    onAddResourcesClick: (resource, id, howMany) => {
             dispatch(addResource(resource, id, howMany))
         }
-    }
-}
+});
 
 const LocationContainer = connect (
     mapStateToProps,
     mapDispatchToProps
-)(LocationList)
+)(LocationList);
 
 export default LocationContainer;

@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
+import LocationContainer from './LocationContainer';
 import registerServiceWorker from './registerServiceWorker';
+import {Provider} from 'react-redux';
 
 import * as actions from './actions';
 import starTrekApp from './reducers';
 import {createStore} from 'redux';
 
-const store = createStore(starTrekApp);
+const store = createStore(starTrekApp, {"locations": {'planets': {'210':{'id': 210, 'name': 'Neptune', 'resources': {'crystals': 500}}, "211":{'id': 211, 'name': 'Saturn', 'resources': {'crystals': 300}}}}});
 
 window.store = store;
 
@@ -61,5 +63,8 @@ window.addResource = actions.addResource;
 
 // window.transferCrystals = transferCrystals;
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    <Provider store={store}>
+        <LocationContainer />
+    </Provider>, document.getElementById('root'));
 registerServiceWorker();
