@@ -9,6 +9,9 @@ import {Provider} from 'react-redux';
 import * as actions from './actions';
 import starTrekApp from './reducers';
 import {createStore} from 'redux';
+import _ from 'lodash';
+
+window._ = _;
 
 const store = createStore(starTrekApp, {"locations": {'planets': {'210':{'id': 210, 'name': 'Neptune', 'resources': {'crystals': 500}}, "211":{'id': 211, 'name': 'Saturn', 'resources': {'crystals': 300}}}}});
 
