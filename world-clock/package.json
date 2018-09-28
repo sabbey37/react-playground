@@ -8,6 +8,7 @@
     "forwarded": "^0.1.2",
     "fresh": "^0.5.2",
     "hoek": "^5.0.3",
+    "lodash": "^4.17.11",
     "moment": "^2.22.0",
     "moment-timezone": "^0.5.13",
     "react": "^15.6.1",
